@@ -35,6 +35,13 @@ install_python_packages() {
     fi
 }
 
+setup_airflow_connections() {
+    if [ -e "setup_connections.py" ]; then
+    echo "Start setting up Airflow connections"
+    python3 setup_connections.py
+    fi
+}
+
 wait_for_port() {
   local name="$1" host="$2" port="$3"
   local j=0
@@ -118,6 +125,7 @@ case "$1" in
   webserver)
     airflow initdb
     install_python_packages
+    # setup_airflow_connections
     if [ "$AIRFLOW__CORE__EXECUTOR" = "LocalExecutor" ] || [ "$AIRFLOW__CORE__EXECUTOR" = "SequentialExecutor" ]; then
       # With the "Local" and "Sequential" executors it should all run in one container.
       airflow scheduler &

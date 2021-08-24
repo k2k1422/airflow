@@ -70,6 +70,7 @@ RUN set -ex \
 COPY script/entrypoint.sh /entrypoint.sh
 RUN chmod +x /entrypoint.sh
 COPY config/airflow.cfg ${AIRFLOW_USER_HOME}/airflow.cfg
+COPY config/setup_connections.py setup_connections.py
 COPY dags /usr/local/airflow/dags
 COPY requirements.txt requirements.txt
 
