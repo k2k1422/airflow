@@ -1,0 +1,11 @@
+db:
+    image: postgres
+    container_name: pg-docker
+    environment:
+        POSTGRES_USER: postgres
+        POSTGRES_PASSWORD: docker
+    restart: unless-stopped
+    volumes:
+      - ./volume:/var/lib/postgresql/data
+    ports:
+      - "5432:5432"

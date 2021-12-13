@@ -1,0 +1,8 @@
+db:
+    image: redis
+    container_name: redis-light
+    restart: unless-stopped
+    volumes:
+      - ./volume:/data
+    ports:
+      - "6379:6379"
